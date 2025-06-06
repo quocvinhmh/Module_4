@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sản phẩm</title>
+</head>
+<body>
+<h2>Danh sách sản phẩm</h2>
+<a href="/Gradle___com_codegym___pl_san_pham_1_0_SNAPSHOT_war__exploded_/home/create">Thêm sản phẩm</a>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Tên</th>
+        <th>Giá</th>
+        <th>Hành động</th>
+    </tr>
+    <tr th:each="p : ${products}">
+        <td th:text="${p.id}"></td>
+        <td th:text="${p.name}"></td>
+        <td th:text="${p.price}"></td>
+        <td>
+            <a th:href="@{/home/edit(id=${p.id})}">Sửa</a> |
+            <a th:href="@{/home/delete(id=${p.id})}">Xóa</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
