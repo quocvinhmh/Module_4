@@ -3,7 +3,7 @@ plugins {
     id 'war'
 }
 
-group 'com.codegym'
+group 'com.example'
 version '1.0-SNAPSHOT'
 
 repositories {
@@ -22,26 +22,20 @@ tasks.withType(JavaCompile) {
 }
 
 dependencies {
-    compileOnly('javax.servlet:javax.servlet-api:4.0.1')
-    // https://mvnrepository.com/artifact/org.springframework/spring-core
-    implementation group: 'org.springframework', name: 'spring-core', version: '5.3.23'
-// https://mvnrepository.com/artifact/org.springframework/spring-context
-    implementation group: 'org.springframework', name: 'spring-context', version: '5.3.23'
-    // https://mvnrepository.com/artifact/org.springframework/spring-beans
-    implementation group: 'org.springframework', name: 'spring-beans', version: '5.3.23'
-// https://mvnrepository.com/artifact/org.springframework/spring-web
-    implementation group: 'org.springframework', name: 'spring-web', version: '5.3.23'
-    // https://mvnrepository.com/artifact/org.springframework/spring-webmvc
-    implementation group: 'org.springframework', name: 'spring-webmvc', version: '5.3.23'
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
 
-    // https://mvnrepository.com/artifact/org.thymeleaf/thymeleaf-spring5
-    implementation group: 'org.thymeleaf', name: 'thymeleaf-spring5', version: '3.1.1.RELEASE'
-    // https://mvnrepository.com/artifact/nz.net.ultraq.thymeleaf/thymeleaf-layout-dialect
-    implementation group: 'nz.net.ultraq.thymeleaf', name: 'thymeleaf-layout-dialect', version: '3.1.0'
+    implementation 'org.springframework:spring-webmvc:5.3.33'
+    implementation 'org.thymeleaf:thymeleaf:3.1.1.RELEASE'
+    implementation 'org.thymeleaf:thymeleaf-spring5:3.1.1.RELEASE'
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
-    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
+    implementation 'org.hibernate:hibernate-core:5.6.15.Final'
+    implementation 'javax.persistence:javax.persistence-api:2.2'
+    implementation 'com.mysql:mysql-connector-j:8.0.33'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.10.2'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.10.2'
 }
+
 
 test {
     useJUnitPlatform()
