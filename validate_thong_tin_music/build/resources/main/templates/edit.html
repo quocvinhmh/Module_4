@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Sửa thông tin</h1>
+<form th:action="@{/music/edit}" th:object="${music}" method="post">
+    <input type="hidden" name="index" th:value="${index}"/>
+
+    <div>
+        Tên bài hát:
+        <input type="text" th:field="*{name}"/>
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    </div>
+
+    <div>
+        Nghệ sĩ:
+        <input type="text" th:field="*{artist}"/>
+        <p th:if="${#fields.hasErrors('artist')}" th:errors="*{artist}"></p>
+    </div>
+
+    <div>
+        Thể loại:
+        <input type="text" th:field="*{genre}"/>
+        <p th:if="${#fields.hasErrors('genre')}" th:errors="*{genre}"></p>
+    </div>
+
+    <button type="submit">Cập nhật</button>
+</form>
+
+<a th:href="@{/song}">Quay lại danh sách</a>
+</form>
+</body>
+</html>

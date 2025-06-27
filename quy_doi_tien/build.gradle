@@ -1,0 +1,53 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+group = 'com.example'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    junitVersion = '5.10.2'
+    springVersion = '5.3.32'
+    thymeleafVersion = '3.1.2.RELEASE'
+}
+
+sourceCompatibility = '1.8'
+targetCompatibility = '1.8'
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+dependencies {
+    // Servlet API (chỉ compile, runtime do container cung cấp)
+    compileOnly 'javax.servlet:javax.servlet-api:4.0.1'
+
+    // Spring MVC
+    implementation "org.springframework:spring-webmvc:${springVersion}"
+    implementation "org.springframework:spring-context:${springVersion}"
+    implementation "org.springframework:spring-core:${springVersion}"
+
+    // Thymeleaf + Spring integration
+    implementation "org.thymeleaf:thymeleaf:${thymeleafVersion}"
+    implementation "org.thymeleaf:thymeleaf-spring5:${thymeleafVersion}"
+
+    // JSTL (nếu bạn dùng thêm JSP hoặc cần JSTL support)
+    implementation 'javax.servlet:jstl:1.2'
+
+    // Logging (nếu cần log - optional)
+    implementation 'org.slf4j:slf4j-api:1.7.36'
+    implementation 'org.slf4j:slf4j-simple:1.7.36'
+
+    // JUnit 5
+    testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+}
+
+test {
+    useJUnitPlatform()
+}

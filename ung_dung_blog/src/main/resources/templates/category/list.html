@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sách danh mục</title>
+</head>
+<body>
+
+<h1>Danh sách danh mục</h1>
+
+<a th:href="@{/categories/create}">Thêm mới danh mục</a>
+
+<table border="1">
+  <thead>
+  <tr>
+    <th>STT</th>
+    <th>Tên danh mục</th>
+    <th>Hành động</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="category, iStat : ${categories}">
+    <td th:text="${iStat.index + 1}"></td>
+    <td th:text="${category.name}"></td>
+    <td>
+      <a th:href="@{'/categories/edit/' + ${category.id}}">Sửa</a> |
+      <a th:href="@{'/categories/delete/' + ${category.id}}"
+         onclick="return confirm('Bạn có chắc muốn xoá không?')">Xoá</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<a th:href="@{/blogs}">← Về danh sách blog</a>
+
+</body>
+</html>

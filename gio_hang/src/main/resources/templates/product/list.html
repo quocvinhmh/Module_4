@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Danh sách sản phẩm</title>
+</head>
+<body>
+<h1>Danh sách sản phẩm</h1>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Tên sản phẩm</th>
+        <th>Ảnh</th>
+        <th>Giá</th>
+        <th>Chi tiết</th>
+    </tr>
+    <tr th:each="product : ${products}">
+        <td th:text="${product.id}"></td>
+        <td th:text="${product.name}"></td>
+        <td th:src="@{${product.image}}"></td>
+        <td th:text="${product.price}"></td>
+        <td><a th:href="@{/product/{id}(id=${product.id})}">Xem</a></td>
+    </tr>
+</table>
+<br>
+<a href="/cart">Xem giỏ hàng</a>
+</body>
+</html>

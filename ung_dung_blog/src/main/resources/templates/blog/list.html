@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Danh sách Blog</title>
+  <meta charset="UTF-8">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<h1>Danh sách Blog</h1>
+
+<a th:href="@{/blogs/create}">Tạo bài viết mới</a>
+
+<form th:action="@{/blogs/search}" method="get">
+  <input type="text" name="keyword" placeholder="Tìm tiêu đề...">
+  <button type="submit">Tìm kiếm</button>
+</form>
+
+<table border="1" cellpadding="5" cellspacing="0">
+  <thead>
+  <tr>
+    <th>Tiêu đề</th>
+    <th>Danh mục</th>
+    <th>Ngày tạo</th>
+    <th>Hành động</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="blog : ${blogPage}" th:id="'row-' + ${blog.id}">
+    <td th:text="${blog.title}">Tiêu đề</td>
+    <td th:text="${blog.category != null ? blog.category.name : 'Không có danh mục'}">Danh mục</td>
+    <td th:text="${#temporals.format(blog.createdAt, 'dd/MM/yyyy HH:mm')}">Ngày tạo</td>
+    <td>
+      <a th:href="@{/blogs/view/{id}(id=${blog.id})}">Xem</a> |
+      <a th:href="@{/blogs/edit/{id}(id=${blog.id})}">Sửa</a> |
+      <a href="#" class="btn-delete" th:attr="data-id=${blog.id}">Xoá</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+<div th:if="${blogPage.hasContent()}">
+    <span th:if="${blogPage.hasPrevious()}">
+        <a th:href="@{/blogs(page=${blogPage.number - 1})}">« Trước</a>
+    </span>
+  <span>
+        Trang <span th:text="${blogPage.number + 1}">1</span> / <span th:text="${blogPage.totalPages}">1</span>
+    </span>
+  <span th:if="${blogPage.hasNext()}">
+        <a th:href="@{/blogs(page=${blogPage.number + 1})}">Sau »</a>
+    </span>
+</div>
+
+<script>
+  $(document).ready(function() {
+    $("table").on("click", ".btn-delete", function(e) {
+      e.preventDefault();
+      if (!confirm("Bạn chắc chắn muốn xoá?")) return;
+
+      const blogId = $(this).data("id");
+
+      $.ajax({
+        url: "/api/blogs/" + blogId,
+        method: "DELETE",
+        success: function() {
+          alert("Xoá thành công!");
+          $("#row-" + blogId).remove();
+        },
+        error: function() {
+          alert("Xoá thất bại hoặc bài không tồn tại.");
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

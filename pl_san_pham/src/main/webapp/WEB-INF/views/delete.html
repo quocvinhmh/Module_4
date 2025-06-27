@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<section th:fragment="section">
+    <h5>Bạn có chắc muốn xoá sản phẩm "<span th:text="${product.name}"></span>"?</h5>
+    <form th:action="@{/product/delete}" method="post">
+        <input type="hidden" name="id" th:value="${product.id}"/>
+        <button class="btn btn-danger" type="submit">Xoá</button>
+        <a th:href="@{/product/list}" class="btn btn-secondary">Huỷ</a>
+    </form>
+</section>
+</html>

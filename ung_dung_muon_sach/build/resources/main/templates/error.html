@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Lỗi</title>
+</head>
+<body>
+<h2 style="color:red;">Đã xảy ra lỗi</h2>
+<p th:text="${errorMessage}"></p>
+<a th:href="@{/books}">Quay lại danh sách</a>
+</body>
+</html>

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Trả sách thành công</title>
+</head>
+<body>
+<h2>Bạn đã trả sách thành công!</h2>
+<p>Sách: <b th:text="${title}"></b></p>
+
+<a th:href="@{/books}">Quay lại danh sách sách</a>
+</body>
+</html>

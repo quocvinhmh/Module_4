@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Danh sách sách</title>
+</head>
+<body>
+<h1>Danh sách sách</h1>
+
+<table border="1">
+    <thead>
+    <tr>
+        <th>STT</th>
+        <th>Tên sách</th>
+        <th>Số lượng</th>
+        <th>Hành động</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book, iterStat : ${books}">
+        <td th:text="${iterStat.count}">1</td>
+        <td th:text="${book.title}">Tên sách</td>
+        <td th:text="${book.quantity}">Số lượng</td>
+        <td>
+            <a th:href="@{'/books/borrow/' + ${book.id}}"
+               th:if="${book.quantity > 0}">Mượn</a>
+            <span th:if="${book.quantity == 0}">Hết sách</span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+<a href="/books/return">Trả sách</a>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Đăng ký người dùng</title>
+  <style>
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+<h2>Đăng ký người dùng</h2>
+
+<form th:action="@{/submit}" th:object="${useform}" method="post">
+  <label>Tên:</label>
+  <input type="text" th:field="*{name}" />
+  <span class="error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+  <br><br>
+
+  <label>Tuổi:</label>
+  <input type="number" th:field="*{age}" />
+  <span class="error" th:if="${#fields.hasErrors('age')}" th:errors="*{age}"></span>
+  <br><br>
+
+  <label>Email:</label>
+  <input type="email" th:field="*{email}" />
+  <span class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+  <br><br>
+
+  <label>Mật khẩu:</label>
+  <input type="password" th:field="*{password}" />
+  <span class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+  <br><br>
+
+  <button type="submit">Đăng ký</button>
+</form>
+
+<a th:href="@{/list}">Quay lại danh sách</a>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Xem chi tiết Blog</title>
+</head>
+<body>
+
+<h1>Chi tiết bài viết</h1>
+
+<p><strong>Tiêu đề:</strong> <span th:text="${blog.title}"></span></p>
+
+<p>
+  <strong>Danh mục:</strong>
+  <span th:if="${blog.category != null}" th:text="${blog.category.name}"></span>
+  <span th:if="${blog.category == null}">Không có danh mục</span>
+</p>
+
+<p><strong>Nội dung:</strong></p>
+<p th:text="${blog.content}"></p>
+
+<p><strong>Ngày tạo:</strong> <span th:text="${#temporals.format(blog.createdAt, 'dd/MM/yyyy HH:mm')}"></span></p>
+
+<a th:href="@{/blogs}">Quay lại danh sách</a>
+
+</body>
+</html>

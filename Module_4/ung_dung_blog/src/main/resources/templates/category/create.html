@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Thêm danh mục</title>
+</head>
+<body>
+
+<h1>Thêm danh mục</h1>
+
+<form th:action="@{/categories/create}" method="post" th:object="${category}">
+  <label>Tên danh mục:</label>
+  <input type="text" th:field="*{name}" required>
+  <br><br>
+  <button type="submit">Lưu</button>
+</form>
+
+<a th:href="@{/categories}">← Về danh sách danh mục</a>
+
+</body>
+</html>

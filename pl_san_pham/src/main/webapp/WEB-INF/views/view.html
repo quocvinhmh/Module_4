@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<section th:fragment="section">
+    <h4>Thông tin sản phẩm</h4>
+    <ul class="list-group">
+        <li class="list-group-item">ID: <span th:text="${product.id}"></span></li>
+        <li class="list-group-item">Tên: <span th:text="${product.name}"></span></li>
+        <li class="list-group-item">Giá: <span th:text="${product.price}"></span></li>
+        <li class="list-group-item">SL: <span th:text="${product.quantity}"></span></li>
+    </ul>
+    <br>
+    <a th:href="@{/product/list}" class="btn btn-secondary">Quay lại</a>
+</section>
+</html>

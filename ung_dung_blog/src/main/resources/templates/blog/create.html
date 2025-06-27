@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head><title>Tạo bài viết</title></head>
+<body>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<div th:fragment="content">
+  <h1>Tạo bài viết mới</h1>
+
+  <form th:action="@{/blogs/create}" method="post" th:object="${blog}">
+    <label>Tiêu đề:</label><br>
+    <input type="text" th:field="*{title}" required><br><br>
+
+    <label>Nội dung:</label><br>
+    <textarea th:field="*{content}" rows="10" cols="50" required></textarea><br><br>
+
+    <label>Danh mục:</label><br>
+    <select th:field="*{category.id}" required>
+      <option th:each="cate : ${categories}" th:value="${cate.id}" th:text="${cate.name}"></option>
+    </select><br><br>
+
+    <button type="submit">Lưu</button>
+  </form>
+
+  <a th:href="@{/blogs}">⬅ Quay lại danh sách</a>
+</div>
+<script>
+  $(document).ready(function(){
+    $('input[name=title]').focus();
+  }
+
+</script>
+</body>
+</html>
